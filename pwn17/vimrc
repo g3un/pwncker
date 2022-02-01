@@ -33,8 +33,6 @@ Plug 'preservim/nerdtree'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'ap/vim-buftabline'
 
-Plug 'Yggdroot/indentLine'
-
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/seoul256.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'

@@ -9,13 +9,14 @@ ENV PYTHONIOENCODING UTF-8
 # Copy static files
 RUN mkdir -p /static
 COPy config.fish /static/config.fish
-COPy init.vim /static/init.vim
+COPy vim_plugins /static/vim_plugins
+COPy vimrc /static/vimrc
 COPY add_user.fish /static/add_user.fish
 
 # Set locale and timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &&\
     echo $TZ > /etc/timezone
-COPY locale.conf /etc/locale.conf
+COPY locale /etc/default/locale
 
 # Replace apt server to "mirror.kakao.com"
 RUN sed -i "s/[a-z\.]*\.com/mirror.kakao.com/g" /etc/apt/sources.list
@@ -26,30 +27,35 @@ RUN dpkg --add-architecture i386 &&\
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # Install packages
-RUN apt-get install -y fish git curl wget gdb neovim sudo openssh-server \
+RUN apt-get install -y fish git curl wget gdb vim sudo openssh-server \
                        python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential \
-                       ruby &&\
-    python3 -m pip install -U pip pwntools neovim &&\
-    gem install one_gadget
+                       ruby
 
 # Fish shell settings
-RUN fish -c "mkdir -p ~/.config/fish; and \
-            cp /static/config.fish ~/.config/fish/config.fish"
+RUN mkdir -p ~/.config/fish &&\
+    cp /static/config.fish ~/.config/fish/config.fish
 
 # Neovim settings
-RUN fish -c "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim; and \
-            mkdir -p ~/.config/nvim; and \
-            cp /static/init.vim ~/.config/nvim/init.vim; and \
-            nvim -c PlugInstall -c qa!"
+RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &&\
+    cp /static/vim_plugins ~/.vimrc &&\
+    vim -c PlugInstall -c qa! &&\
+    cp /static/vimrc ~/.vimrc
+
+# Install python plugins
+RUN python3 -m pip install --upgrade pip &&\
+    python3 -m pip install --upgrade pwntools
+
+# Install ruby plugin
+RUN gem install one_gadget
 
 # Install pwndbg
-RUN fish -c "git clone https://github.com/pwndbg/pwndbg /pwndbg; and \
-            cd /pwndbg; and \
-            ./setup.sh"
+RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\
+    cd /pwndbg &&\
+    ./setup.sh
 
 RUN apt-get update &&\
     apt-get upgrade -y &&\
     apt-get autoremove -y
 
-CMD ["fish"]
+CMD [ "fish" ]

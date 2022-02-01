@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 
 LABEL name g3un
 LABEL email g3un98@gmail.com
@@ -18,8 +18,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &&\
     echo $TZ > /etc/timezone
 COPY locale /etc/default/locale
 
-# Replace apt server to "mirror.kakao.com"
-RUN sed -i "s/[a-z\.]*\.com/mirror.kakao.com/g" /etc/apt/sources.list
+# Replace apt server to "old-releases.ubuntu.com"
+RUN sed -i "s/[a-z\.]*\.com/old-releases.ubuntu.com/g" /etc/apt/sources.list
 
 # Install 32bit dependency packages
 RUN dpkg --add-architecture i386 &&\
