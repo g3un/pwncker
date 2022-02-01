@@ -4,7 +4,7 @@ Dockerfiles for pwnable.
 
 ## pwn20
 
-This is a Ubuntu 20.04 based image.
+Ubuntu 20.04 based image.
 
 ### Features
 
@@ -36,3 +36,7 @@ This is a Ubuntu 20.04 based image.
     - sudo
     - openssh server
     - 32bit depedency packages
+
+## pwn18
+
+Ubuntu 18.04 based image.
