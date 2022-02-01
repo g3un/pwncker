@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:16.04
 
 LABEL name g3un
 LABEL email g3un98@gmail.com
@@ -28,8 +28,7 @@ RUN dpkg --add-architecture i386 &&\
 
 # Install packages
 RUN apt-get install -y fish git curl wget gdb vim sudo openssh-server \
-                       python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential \
-                       ruby
+                       python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential
 
 # Fish shell settings
 RUN mkdir -p ~/.config/fish &&\
@@ -43,11 +42,8 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     cp /static/vimrc ~/.vimrc
 
 # Install python plugins
-RUN python3 -m pip install --upgrade pip &&\
+RUN python3 -m pip install --upgrade "pip < 21.0" &&\
     python3 -m pip install --upgrade pwntools
-
-# Install ruby plugin
-RUN gem install one_gadget
 
 # Install pwndbg
 RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\
