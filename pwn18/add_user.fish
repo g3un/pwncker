@@ -15,11 +15,11 @@ function add_user
                      cp /static/config.fish ~/.config/fish/config.fish"
 
     # Neovim settings
-    su - $argv[1] -c "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    su - $argv[1] -c "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
                          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim; and \
-                     mkdir -p ~/.config/nvim; and \
-                     cp /static/init.vim ~/.config/nvim/init.vim; and \
-                     nvim -c PlugInstall -c qa!"
+                     cp /static/vim_plugins ~/.vimrc; and \
+                     vim -c PlugInstall -c qa!; and \
+                     cp /static/vimrc ~/.vimrc"
 
     # Install pwndbg
     su - $argv[1] -c "echo 'source /pwndbg/gdbinit.py' > ~/.gdbinit"
