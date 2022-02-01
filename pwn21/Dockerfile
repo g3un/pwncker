@@ -16,7 +16,7 @@ COPY add_user.fish /static/add_user.fish
 # Set locale and timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &&\
     echo $TZ > /etc/timezone
-COPY locale.conf /etc/locale.conf
+COPY locale /etc/default/locale
 
 # Replace apt server to "mirror.kakao.com"
 RUN sed -i "s/[a-z\.]*\.com/mirror.kakao.com/g" /etc/apt/sources.list
