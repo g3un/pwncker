@@ -3,7 +3,9 @@ Plug 'preservim/nerdtree'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'ap/vim-buftabline'
 
-Plug 'easymotion/vim-easymotion'
+Plug 'Yggdroot/indentLine'
+
 Plug 'junegunn/seoul256.vim'
+Plug 'easymotion/vim-easymotion'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
