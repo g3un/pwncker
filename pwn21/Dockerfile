@@ -8,10 +8,11 @@ ENV PYTHONIOENCODING UTF-8
 
 # Copy static files
 RUN mkdir -p /static
-COPy config.fish /static/config.fish
+COPy zshrc /static/zshrc
 COPy vim_plugins /static/vim_plugins
 COPy vimrc /static/vimrc
-COPY add_user.fish /static/add_user.fish
+COPY add_user.sh /static/add_user.sh
+COPY start.sh /start.sh
 
 # Set locale and timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &&\
@@ -27,13 +28,12 @@ RUN dpkg --add-architecture i386 &&\
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # Install packages
-RUN apt-get install -y fish git curl wget gdb vim sudo openssh-server \
-                       python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential \
-                       ruby
+RUN apt-get install -y zsh git curl wget gdb vim sudo openssh-server \
+                       python3 python3-pip python3-dev libssl-dev libffi-dev build-essential \
+                       gcc ruby-dev
 
-# Fish shell settings
-RUN mkdir -p ~/.config/fish &&\
-    cp /static/config.fish ~/.config/fish/config.fish
+# Zsh shell settings
+RUN cp /static/zshrc ~/.zshrc 
 
 # Neovim settings
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -46,8 +46,8 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 RUN python3 -m pip install --upgrade pip &&\
     python3 -m pip install --upgrade pwntools
 
-# Install ruby plugin
-RUN gem install one_gadget
+# Install ruby plugins
+RUN gem install one_gadget seccomp-tools
 
 # Install pwndbg
 RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\
@@ -58,4 +58,5 @@ RUN apt-get update &&\
     apt-get upgrade -y &&\
     apt-get autoremove -y
 
-CMD [ "fish" ]
+EXPOSE 22
+CMD [ "/start.sh" ]
