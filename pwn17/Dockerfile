@@ -8,10 +8,10 @@ ENV PYTHONIOENCODING UTF-8
 
 # Copy static files
 RUN mkdir -p /static
-COPy zshrc /static/zshrc
-COPy vim_plugins /static/vim_plugins
-COPy vimrc /static/vimrc
-COPY add_user.sh /static/add_user.sh
+COPY config.fish /static/config.fish
+COPY vim_plugins /static/vim_plugins
+COPY vimrc /static/vimrc
+COPY add_user.fish /static/add_user.fish
 COPY start.sh /start.sh
 
 # Set locale and timezone
@@ -28,11 +28,15 @@ RUN dpkg --add-architecture i386 &&\
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # Install packages
-RUN apt-get install -y zsh git curl wget gdb vim sudo openssh-server \
+RUN apt-get install -y fish git curl wget gdb vim sudo openssh-server \
                        python3 python3-pip python3-dev libssl-dev libffi-dev build-essential
 
-# Zsh shell settings
-RUN cp /static/zshrc ~/.zshrc 
+# Fish shell settings
+RUN curl -fsSL https://starship.rs/install.sh > /static/starship_install.sh &&\
+    chmod +x /static/starship_install.sh &&\
+    /static/starship_install.sh --yes &&\
+    mkdir -p ~/.config/fish &&\
+    cp /static/config.fish ~/.config/fish/config.fish
 
 # Neovim settings
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -42,8 +46,8 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     cp /static/vimrc ~/.vimrc
 
 # Install python plugins
-RUN python3 -m pip install --upgrade pip &&\
-    python3 -m pip install --upgrade pwntools
+RUN pip3 install -U pip &&\
+    pip3 install -U pwntools
 
 # Install pwndbg
 RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\
