@@ -15,8 +15,9 @@ Dockerfiles for pwnable.
 
 ## Features
 
-- zsh shell
-  - add\_user script (`/static/add_user.sh`)
+- fish shell
+  - add\_user function (`/static/add_user.sh`)
+    - please execute `source /static/add_user.fish`, before use the function
     - usage: `/static/add_user [id]`
     - **don't forget to set password** (`passwd [id]`)
 - vim
