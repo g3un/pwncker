@@ -1,4 +1,4 @@
-[#](#) Pwncker
+# Pwncker
 
 Dockerfiles for pwnable.
 
