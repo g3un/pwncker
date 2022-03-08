@@ -1,11 +1,9 @@
 call plug#begin()
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'ap/vim-buftabline'
 
 Plug 'Yggdroot/indentLine'
 
-Plug 'junegunn/seoul256.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()

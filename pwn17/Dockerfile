@@ -8,10 +8,10 @@ ENV PYTHONIOENCODING UTF-8
 
 # Copy static files
 RUN mkdir -p /static
-COPY config.fish /static/config.fish
+COPY zshrc /static/zshrc
 COPY vim_plugins /static/vim_plugins
 COPY vimrc /static/vimrc
-COPY add_user.fish /static/add_user.fish
+COPY add_user.sh /static/add_user.sh
 COPY start.sh /start.sh
 
 # Set locale and timezone
@@ -28,15 +28,15 @@ RUN dpkg --add-architecture i386 &&\
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # Install packages
-RUN apt-get install -y fish git curl wget gdb vim sudo openssh-server \
-                       python3 python3-pip python3-dev libssl-dev libffi-dev build-essential
+RUN apt-get install -y curl gcc gdb git openssh-server sudo vim wget zsh \
+                       build-essential libffi-dev libssl-dev \
+                       python3 python3-pip python3-dev \
+                       ruby
 
-# Fish shell settings
-RUN curl -fsSL https://starship.rs/install.sh > /static/starship_install.sh &&\
-    chmod +x /static/starship_install.sh &&\
-    /static/starship_install.sh --yes &&\
-    mkdir -p ~/.config/fish &&\
-    cp /static/config.fish ~/.config/fish/config.fish
+# Zsh shell settings
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sed 's/exec zsh -l//')" &&\
+    ln -s /dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme &&\
+    cp /static/zshrc ~/.zshrc
 
 # Neovim settings
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -53,6 +53,13 @@ RUN pip3 install -U pip &&\
 RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\
     cd /pwndbg &&\
     ./setup.sh
+
+# Install themes
+RUN git clone https://github.com/dracula/git.git /dracula-git &&\
+    git clone https://github.com/dracula/zsh.git /dracula-zsh
+
+RUN cp /dracula-git/config/gitconfig ~/.gitconfig &&\
+    ln -sf /dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
 
 RUN apt-get update &&\
     apt-get upgrade -y &&\
