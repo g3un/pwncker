@@ -5,30 +5,30 @@ Dockerfiles for pwnable.
 ## Versions
 
 - pwn16 (ubuntu 16.04 LTS)
-  - without ruby
+  - without ruby plugins
 - pwn17 (ubuntu 17.10)
-  - without ruby
+  - without ruby plugins
 - pwn18 (ubuntu 18.04 LTS)
 - pwn19 (ubuntu 19.10)
 - pwn20 (ubuntu 20.04 LTS)
 - pwn21 (ubuntu 21.10)
 
-## Features
+## Intalled packages
 
-- fish shell
-  - add\_user function (`/static/add_user.sh`)
-    - please execute `source /static/add_user.fish`, before use the function
-    - usage: `add_user [id]`
+- zsh shell
+  - [Oh My Zsh](https://ohmyz.sh)
+  - add\_user script (`/static/add_user.sh`)
+    - usage: `/static/add_user.sh [id]`
     - **don't forget to set password** (`passwd [id]`)
 - vim
   - [vim-plug](https://github.com/junegunn/vim-plug)
-    - [nerdtree](https://github.com/preservim/nerdtree)
-    - [vim-buffergator](https://github.com/jeetsukumaran/vim-buffergator)
-    - [vim-buftabline](https://github.com/ap/vim-buftabline)
-    - [indentLine](https://github.com/Yggdroot/indentLine)
-    - [seoul256.vim](https://github.com/junegunn/seoul256.vim)
-    - [vim-easymotion](https://github.com/easymotion/vim-easymotion)
-    - [vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
+    - [preservim/nerdtree](https://github.com/preservim/nerdtree)
+    - [ryanoasis/vim-devicons](https://github.com/ryanoasis/vim-devicons)
+    - [tiagofumo/vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
+    - [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
+    - [jeetsukumaran/vim-buffergator](https://github.com/jeetsukumaran/vim-buffergator)
+    - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
+    - [dracula/vim](https://github.com/dracula/vim)
 - gdb
   - [pwndbg](https://github.com/pwndbg/pwndbg) (`/pwndbg`)
 - python3
