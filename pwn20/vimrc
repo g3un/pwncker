@@ -17,7 +17,7 @@ nmap <Leader>" :split<CR>
 nmap <Leader>% :vsplit<CR>
 
 call plug#begin()
-Plug 'preservim/nerdtree' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'jeetsukumaran/vim-buffergator'
 
@@ -27,8 +27,6 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeIgnore = [
-\]
 autocmd BufEnter * lcd %:p:h
 map <Leader>t <ESC>:NERDTreeToggle<CR>
 
