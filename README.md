@@ -23,8 +23,6 @@ Dockerfiles for pwnable.
 - vim
   - [vim-plug](https://github.com/junegunn/vim-plug)
     - [preservim/nerdtree](https://github.com/preservim/nerdtree)
-    - [ryanoasis/vim-devicons](https://github.com/ryanoasis/vim-devicons)
-    - [tiagofumo/vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
     - [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
     - [jeetsukumaran/vim-buffergator](https://github.com/jeetsukumaran/vim-buffergator)
     - [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
