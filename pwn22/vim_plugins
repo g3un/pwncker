@@ -1,0 +1,9 @@
+call plug#begin()
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'jeetsukumaran/vim-buffergator'
+
+Plug 'Yggdroot/indentLine'
+
+Plug 'dracula/vim', { 'as': 'dracula' }
+call plug#end()

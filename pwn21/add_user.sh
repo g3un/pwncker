@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 # Arguments check
 if [ 1 -ne $# ]; then
