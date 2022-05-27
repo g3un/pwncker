@@ -12,6 +12,7 @@ Dockerfiles for pwnable.
 - pwn19 (ubuntu 19.10)
 - pwn20 (ubuntu 20.04 LTS)
 - pwn21 (ubuntu 21.10)
+- pwn22 (ubuntu 22.04 LTS)
 
 ## Intalled packages
 
