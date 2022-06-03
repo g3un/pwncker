@@ -46,7 +46,8 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 # Install python plugins
 RUN pip3 install -U pip &&\
-    pip3 install -U pwntools
+    pip3 install -U pwntools &&\
+    pip3 install -U ROPgadget
 
 # Install ruby plugins
 RUN gem install one_gadget &&\
