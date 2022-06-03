@@ -35,6 +35,9 @@ call plug#end()
 " NERDTree settings
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = [
+    \'.git',
+\]
 autocmd BufEnter * lcd %:p:h
 map <Leader>t <ESC>:NERDTreeToggle<CR>
 
