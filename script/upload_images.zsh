@@ -10,7 +10,7 @@ IMAGES=(
     "pwn21"
     "pwn22"
 )
-TAG="v1.2.4"
+TAG="v1.2.5"
 
 for IMAGE in "${IMAGES[@]}"; do
     sudo docker build -t $USER/$IMAGE:$TAG $IMAGE &&\
