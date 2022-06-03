@@ -46,7 +46,8 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 # Install python plugins
 RUN pip3 install -U "pip < 21.0" &&\
-    pip3 install -U pwntools
+    pip3 install -U pwntools &&\
+    pip3 install -U ROPgadget
 
 # Install pwndbg
 RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\

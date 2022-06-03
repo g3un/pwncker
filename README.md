@@ -32,6 +32,7 @@ Dockerfiles for pwnable.
   - [pwndbg](https://github.com/pwndbg/pwndbg) (`/pwndbg`)
 - python3
   - [pwntools](https://github.com/Gallopsled/pwntools)
+  - [ROPgadget](https://github.com/JonathanSalwan/ROPgadget)
 - ruby
   - [OneGadget](https://github.com/david942j/one_gadget)
   - [Seccomp Tools](https://github.com/david942j/seccomp-tools)
