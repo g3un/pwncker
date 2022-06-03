@@ -5,5 +5,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'Yggdroot/indentLine'
 
+Plug 'easymotion/vim-easymotion'
+
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()

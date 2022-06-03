@@ -18,8 +18,8 @@ Dockerfiles for pwnable.
 
 - zsh shell
   - [Oh My Zsh](https://ohmyz.sh)
-  - add\_user script (`/static/add_user.sh`)
-    - usage: `/static/add_user.sh [id]`
+  - add\_user script (`/static/add_user.zsh`)
+    - usage: `/static/add_user.zsh [id]`
     - **don't forget to set password** (`passwd [id]`)
 - vim
   - [vim-plug](https://github.com/junegunn/vim-plug)

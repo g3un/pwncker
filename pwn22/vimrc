@@ -1,3 +1,4 @@
+" General settings
 set et
 set nowrap
 set nowb
@@ -9,13 +10,16 @@ set sw=4
 set ts=4
 filetype plugin indent on
 
-let g:mapleader = ","
+" Change mapleader to ,
+let g:mapleader = ','
 
-nmap <Leader>C :enew<CR>
-nmap <Leader>bq :bp <BAR> bd #<CR>
-nmap <Leader>" :split<CR>
-nmap <Leader>% :vsplit<CR>
+" Set keybinding for tab features
+nmap <leader>C :enew<cr>
+nmap <leader>bq :bp <bar> bd #<cr>
+nmap <leader>" :split<cr>
+nmap <leader>% :vsplit<cr>
 
+" Plugin lists
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -23,19 +27,29 @@ Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'Yggdroot/indentLine'
 
+Plug 'easymotion/vim-easymotion'
+
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
+" NERDTree settings
 let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeShowHidden = 1
 autocmd BufEnter * lcd %:p:h
 map <Leader>t <ESC>:NERDTreeToggle<CR>
 
+" airline settings
 let g:airline#extensions#tabline#enabled = 1
 
-let g:buffergator_viewport_split_policy = "R"
+" buffergator settings
+let g:buffergator_viewport_split_policy = 'R'
 let g:buffergator_suppress_keymaps = 1
 nmap <leader>bl :BuffergatorOpen<cr>
 nmap <leader>h :BuffergatorMruCyclePrev<cr>
 nmap <leader>l :BuffergatorMruCycleNext<cr>
 
+" vim-easymotion settings
+map <leader>e <plug>(easymotion-prefix)
+
+" Apply dracula theme
 colorscheme dracula

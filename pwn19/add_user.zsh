@@ -2,7 +2,7 @@
 
 # Arguments check
 if [ 1 -ne $# ]; then
-    echo "Usage: /static/add_user.sh [id]"
+    echo "Usage: $0 [id]"
     exit 1
 fi
 
