@@ -3,6 +3,7 @@ FROM ubuntu:17.10
 LABEL name g3un
 LABEL email g3un98@gmail.com
 
+ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ Asia/Seoul
 ENV PYTHONIOENCODING UTF-8
 
@@ -11,12 +12,10 @@ RUN mkdir -p /static
 COPY zshrc /static/zshrc
 COPY vim_plugins /static/vim_plugins
 COPY vimrc /static/vimrc
-COPY add_user.sh /static/add_user.sh
+COPY add_user.zsh /static/add_user.zsh
 COPY start.sh /start.sh
 
-# Set locale and timezone
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &&\
-    echo $TZ > /etc/timezone
+# Set locale
 COPY locale /etc/default/locale
 
 # Replace apt server to "old-releases.ubuntu.com"
@@ -28,7 +27,7 @@ RUN dpkg --add-architecture i386 &&\
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # Install packages
-RUN apt-get install -y curl gcc gdb git openssh-server sudo vim wget zsh \
+RUN apt-get install -y curl gcc gdb git openssh-server sudo vim wget zsh tzdata \
                        build-essential libffi-dev libssl-dev \
                        python3 python3-pip python3-dev \
                        ruby
@@ -56,9 +55,8 @@ RUN git clone https://github.com/pwndbg/pwndbg /pwndbg &&\
 
 # Install themes
 RUN git clone https://github.com/dracula/git.git /dracula-git &&\
-    git clone https://github.com/dracula/zsh.git /dracula-zsh
-
-RUN cp /dracula-git/config/gitconfig ~/.gitconfig &&\
+    git clone https://github.com/dracula/zsh.git /dracula-zsh &&\
+    cp /dracula-git/config/gitconfig ~/.gitconfig &&\
     ln -sf /dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
 
 RUN apt-get update &&\
